@@ -78,6 +78,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                         Get.to(
                           () => const SignIn(),transition: Transition.rightToLeftWithFade,
                           duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn,
                           );
                       });
                     },

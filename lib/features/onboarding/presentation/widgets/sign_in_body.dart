@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:online_groceries_store/core/constats.dart';
 import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
 import 'package:online_groceries_store/core/widgets/space_wiget.dart';
-// import 'package:sign_button/sign_button.dart';
 
 class SignInBody extends StatefulWidget {
   const SignInBody({super.key});
@@ -88,11 +88,22 @@ class _SignInBodyState extends State<SignInBody> {
             },
             mainColor: const Color(0xFF5383EC),
             secondColor: kSecondColor,
-            label: const Row(
-              children: [
-                Text('G'),
-                Text('Continue with Google')
-            ],)
+            text: 'Continue with Google',
+            iconData: FontAwesomeIcons.google,
+            iconSize: 26,
+            iconColor: kSecondColor,
+          ),
+          const VerticalSpace(value: 2),
+          CustomSignInButton(
+            onPressed: () {
+              
+            },
+            mainColor: const Color(0xFF4A66AC),
+            secondColor: kSecondColor,
+            text: 'Continue with Facebook',
+            iconData: FontAwesomeIcons.facebookF,
+            iconSize: 26,
+            iconColor: kSecondColor,
           )
       ],
     );

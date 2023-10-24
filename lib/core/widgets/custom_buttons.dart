@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_groceries_store/core/constats.dart';
 import 'package:online_groceries_store/core/utils/size_config.dart';
+import 'package:online_groceries_store/core/widgets/space_wiget.dart';
 
 class CustomGeneralButton extends StatelessWidget {
   const CustomGeneralButton({super.key, this.text, this.onTap});
@@ -72,27 +73,26 @@ class CustomElevetedButton extends StatelessWidget {
 
 
 class CustomSignInButton extends StatelessWidget {
-  const CustomSignInButton({super.key, this.label, this.onPressed, this.icon, this.mainColor, this.secondColor});
+  const CustomSignInButton({super.key, this.text, this.onPressed, this.mainColor, this.secondColor, this.iconData, this.iconColor, this.iconSize});
   
-  final Widget? label;
+  final String? text;
   final VoidCallback? onPressed;
-  final Widget? icon; 
+  final IconData? iconData;
   final Color? mainColor;
   final Color? secondColor;
+  final Color? iconColor;
+  final double? iconSize;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
+    return ElevatedButton(
       onPressed: onPressed,
-      label: Padding(
-        padding:const EdgeInsets.all(18),
-        child: label
-        ),
-      icon: icon!,
       style: ElevatedButton.styleFrom(
             backgroundColor: mainColor,
             foregroundColor: secondColor,
-            minimumSize: Size(SizeConfig.screenWidth! * 0.8, SizeConfig.screenHeight! * 0.07),
+            minimumSize: Size(
+              SizeConfig.screenWidth! * 0.8, 
+              SizeConfig.screenHeight! * 0.07),
             enableFeedback: false,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
@@ -102,6 +102,27 @@ class CustomSignInButton extends StatelessWidget {
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
+      ),
+      child: SizedBox(
+        width: SizeConfig.screenWidth! * 0.84,
+        height: SizeConfig.screenHeight! * 0.07,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+                Icon(
+                  iconData,
+                  color: iconColor,
+                  size: iconSize,
+                  ),
+                const HorizanintalSpace(value: 2),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Text(
+                    text!,
+                    ),
+                )
+          ]
+          ,),
       )
       );
   }
