@@ -7,7 +7,7 @@ import 'package:online_groceries_store/core/utils/size_config.dart';
 import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
 // import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
 import 'package:online_groceries_store/core/widgets/space_wiget.dart';
-import 'package:online_groceries_store/features/onboarding/presentation/widgets/sign_in.dart';
+import 'package:online_groceries_store/features/sign_in/presentation/sign_in_view.dart';
 
 class OnBoardingBody extends StatefulWidget {
   const OnBoardingBody({super.key});
