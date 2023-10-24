@@ -73,7 +73,7 @@ class CustomElevetedButton extends StatelessWidget {
 
 
 class CustomSignInButton extends StatelessWidget {
-  const CustomSignInButton({super.key, this.text, this.onPressed, this.mainColor, this.secondColor, this.iconData, this.iconColor, this.iconSize});
+  const CustomSignInButton({super.key, this.text, this.onPressed, this.mainColor, this.secondColor, this.iconData, this.iconColor, this.iconSize, this.horizontalPadding});
   
   final String? text;
   final VoidCallback? onPressed;
@@ -82,6 +82,7 @@ class CustomSignInButton extends StatelessWidget {
   final Color? secondColor;
   final Color? iconColor;
   final double? iconSize;
+  final double? horizontalPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +117,7 @@ class CustomSignInButton extends StatelessWidget {
                   ),
                 const HorizanintalSpace(value: 2),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding!),
                   child: Text(
                     text!,
                     ),

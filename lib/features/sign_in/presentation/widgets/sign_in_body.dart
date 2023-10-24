@@ -57,17 +57,17 @@ class _SignInBodyState extends State<SignInBody> {
             ),
 
             const VerticalSpace(value: 2),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: IntlPhoneField(
-                          decoration: 
-                          InputDecoration(
-                            labelText: 'Enter your number',
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(),
-                            ),
-                          ),
-              ),
+            CustomSignInButton(
+                  onPressed: () {
+            
+            },
+            mainColor: kMainColor,
+            secondColor: kSecondColor,
+            text: 'Continue with Phone Number',
+            iconData: FontAwesomeIcons.phone,
+            iconSize: 26,
+            iconColor: kSecondColor,
+            horizontalPadding: 20,
             ),
           const VerticalSpace(value: 2),
           const Text(
@@ -92,6 +92,7 @@ class _SignInBodyState extends State<SignInBody> {
             iconData: FontAwesomeIcons.google,
             iconSize: 26,
             iconColor: kSecondColor,
+            horizontalPadding: 48,
           ),
           const VerticalSpace(value: 2),
           CustomSignInButton(
@@ -104,6 +105,7 @@ class _SignInBodyState extends State<SignInBody> {
             iconData: FontAwesomeIcons.facebookF,
             iconSize: 26,
             iconColor: kSecondColor,
+            horizontalPadding: 37,
           )
       ],
     );

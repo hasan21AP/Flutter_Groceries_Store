@@ -73,12 +73,11 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                   CustomElevetedButton(
                     onPressed: () {
                       Future.delayed(
-                      const Duration(milliseconds: 300),
+                      const Duration(milliseconds: 500),
                       () {
                         Get.to(
-                          () => const SignIn(),transition: Transition.rightToLeftWithFade,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeIn,
+                          () => const SignIn(),transition: Transition.fadeIn,
+                          duration: const Duration(milliseconds: 400),
                           );
                       });
                     },
