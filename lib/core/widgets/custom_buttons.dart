@@ -55,7 +55,7 @@ class CustomElevetedButton extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: mainColor,
                     foregroundColor: secondColor,
-                    minimumSize: Size(SizeConfig.screenWidth! * 0.8, SizeConfig.screenHeight! * 0.07),
+                    minimumSize: Size(SizeConfig.screenWidth! * 0.84, SizeConfig.screenHeight! * 0.07),
                     enableFeedback: false,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),

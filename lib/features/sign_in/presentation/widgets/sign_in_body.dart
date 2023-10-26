@@ -1,9 +1,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:online_groceries_store/core/constats.dart';
+import 'package:online_groceries_store/core/utils/size_config.dart';
 import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
 import 'package:online_groceries_store/core/widgets/space_wiget.dart';
+import 'package:online_groceries_store/features/auth/auth_prov.dart';
+import 'package:online_groceries_store/features/home/presentation/home_screen_view.dart';
+import 'package:provider/provider.dart';
 
 class SignInBody extends StatefulWidget {
   const SignInBody({super.key});
@@ -15,6 +20,7 @@ class SignInBody extends StatefulWidget {
 class _SignInBodyState extends State<SignInBody> {
   @override
   Widget build(BuildContext context) {
+    var prov = Provider.of<AuthProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -58,6 +64,20 @@ class _SignInBodyState extends State<SignInBody> {
             const VerticalSpace(value: 2),
             CustomSignInButton(
                   onPressed: () {
+                    
+            },
+            mainColor: const Color.fromARGB(121, 4, 4, 4),
+            secondColor: kSecondColor,
+            text: 'Continue with Email',
+            iconData: Icons.email,
+            iconSize: 26,
+            iconColor: kSecondColor,
+            horizontalPadding: SizeConfig.screenWidth! * .12,
+            ),
+
+            const VerticalSpace(value: 2),
+            CustomSignInButton(
+                  onPressed: () {
             
             },
             mainColor: kMainColor,
@@ -66,7 +86,7 @@ class _SignInBodyState extends State<SignInBody> {
             iconData: FontAwesomeIcons.phone,
             iconSize: 26,
             iconColor: kSecondColor,
-            horizontalPadding: 20,
+            horizontalPadding: SizeConfig.screenWidth! * .04,
             ),
           const VerticalSpace(value: 2),
           const Text(
@@ -91,12 +111,16 @@ class _SignInBodyState extends State<SignInBody> {
             iconData: FontAwesomeIcons.google,
             iconSize: 26,
             iconColor: kSecondColor,
-            horizontalPadding: 48,
+            horizontalPadding: SizeConfig.screenWidth! * .11,
           ),
           const VerticalSpace(value: 2),
           CustomSignInButton(
-            onPressed: () {
-              
+            onPressed: () async{
+              await prov.signInWithGoogle();
+                    Get.to(() => const HomeScreenView(), 
+                    duration: const Duration(milliseconds: 600),
+                    transition: Transition.fadeIn
+                    );
             },
             mainColor: const Color(0xFF4A66AC),
             secondColor: kSecondColor,
@@ -104,7 +128,7 @@ class _SignInBodyState extends State<SignInBody> {
             iconData: FontAwesomeIcons.facebookF,
             iconSize: 26,
             iconColor: kSecondColor,
-            horizontalPadding: 37,
+            horizontalPadding: SizeConfig.screenWidth! * .088,
           )
       ],
     );
