@@ -55,7 +55,7 @@ class CustomElevetedButton extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: mainColor,
                     foregroundColor: secondColor,
-                    minimumSize: Size(SizeConfig.screenWidth! * 0.84, SizeConfig.screenHeight! * 0.07),
+                    minimumSize: Size(SizeConfig.screenWidth! * 0.85, SizeConfig.screenHeight! * 0.07),
                     enableFeedback: false,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -126,5 +126,35 @@ class CustomSignInButton extends StatelessWidget {
           ,),
       )
       );
+  }
+}
+
+
+class GeneralCustomTextButtons extends StatelessWidget {
+  const GeneralCustomTextButtons({super.key, this.text, this.color, this.onPressed});
+
+  final String? text;
+  final Color? color;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+                onPressed: onPressed, 
+                style: TextButton.styleFrom(
+                  enableFeedback: false,
+                ),
+                child:  Text(
+                      text!,
+                      style: TextStyle(
+                        color: color,
+                        fontSize: 14,
+                        fontFamily: 'Gilroy-Medium',
+                        fontWeight: FontWeight.w400,
+                        height: 0.08,
+                        letterSpacing: 0.70,
+                      ),
+                    ),
+                );
   }
 }

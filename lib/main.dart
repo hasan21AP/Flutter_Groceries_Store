@@ -1,16 +1,16 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:online_groceries_store/features/auth/auth_prov.dart';
+import 'package:online_groceries_store/features/auth/auth_provider/auth_prov.dart';
 import 'package:online_groceries_store/features/home/presentation/home_screen_view.dart';
 import 'package:online_groceries_store/firebase_options.dart';
 import 'package:provider/provider.dart';
-import 'features/splash/presentation/splash_view.dart';
+import 'features/splash/presentation/widgets/splash_view_body.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: 'name-here',
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
@@ -31,7 +31,9 @@ class OnlineGroceriesStore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  GetMaterialApp(
+    // final prov = Provider.of<AuthProvider>(context);
+    // prov.checking();
+    return  MaterialApp(
       title: 'Groceries Store',
       debugShowCheckedModeBanner: false,
       home: _showScreen(context),
@@ -39,14 +41,18 @@ class OnlineGroceriesStore extends StatelessWidget {
   }
 
   Widget _showScreen(context){
-  var prov = Provider.of<AuthProvider>(context);
+  final prov = Provider.of<AuthProvider>(context);
   switch (prov.authStatus) {
     case AuthStatus.Authenticating:
-    case AuthStatus.unAuthenticated:
-      return const SplashView();
     case AuthStatus.Authenticated:
+      prov.checking();
       return const HomeScreenView();
-
+    case AuthStatus.unAuthenticated:
+      prov.checking();
+      return const SplashViewBody();
+      
+    default:
+     return const SplashViewBody();
   }
 }
 }

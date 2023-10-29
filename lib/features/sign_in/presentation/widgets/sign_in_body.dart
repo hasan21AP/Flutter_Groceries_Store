@@ -1,12 +1,14 @@
 
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:online_groceries_store/core/constats.dart';
 import 'package:online_groceries_store/core/utils/size_config.dart';
 import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
 import 'package:online_groceries_store/core/widgets/space_wiget.dart';
-import 'package:online_groceries_store/features/auth/auth_prov.dart';
+import 'package:online_groceries_store/features/auth/auth_provider/auth_prov.dart';
+import 'package:online_groceries_store/features/auth/pages/presentation/login_view.dart';
 import 'package:online_groceries_store/features/home/presentation/home_screen_view.dart';
 import 'package:provider/provider.dart';
 
@@ -18,9 +20,10 @@ class SignInBody extends StatefulWidget {
 }
 
 class _SignInBodyState extends State<SignInBody> {
+
   @override
   Widget build(BuildContext context) {
-    var prov = Provider.of<AuthProvider>(context);
+    final prov = Provider.of<AuthProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -64,7 +67,10 @@ class _SignInBodyState extends State<SignInBody> {
             const VerticalSpace(value: 2),
             CustomSignInButton(
                   onPressed: () {
-                    
+                   Future.delayed( const Duration(milliseconds: 300),
+                   (){Navigator.push(context, 
+                   MaterialPageRoute(builder: (context) => const LogInView()));
+                  });
             },
             mainColor: const Color.fromARGB(121, 4, 4, 4),
             secondColor: kSecondColor,
@@ -102,8 +108,12 @@ class _SignInBodyState extends State<SignInBody> {
               ),
           const VerticalSpace(value: 3),
           CustomSignInButton(
-            onPressed: () {
-              
+            onPressed: () async{
+                    await prov.signInWithGoogle();
+                      Future.delayed( const Duration(milliseconds: 300),
+                   (){Navigator.pushReplacement(context, 
+                   MaterialPageRoute(builder: (context) => const HomeScreenView()));
+                  });
             },
             mainColor: const Color(0xFF5383EC),
             secondColor: kSecondColor,
@@ -115,12 +125,8 @@ class _SignInBodyState extends State<SignInBody> {
           ),
           const VerticalSpace(value: 2),
           CustomSignInButton(
-            onPressed: () async{
-              await prov.signInWithGoogle();
-                    Get.to(() => const HomeScreenView(), 
-                    duration: const Duration(milliseconds: 600),
-                    transition: Transition.fadeIn
-                    );
+            onPressed: () {
+                  
             },
             mainColor: const Color(0xFF4A66AC),
             secondColor: kSecondColor,
@@ -134,3 +140,5 @@ class _SignInBodyState extends State<SignInBody> {
     );
   }
 }
+
+

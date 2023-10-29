@@ -1,45 +1,44 @@
 {
   "project_info": {
-    "project_number": "644403723677",
-    "project_id": "groceries-store-20580",
-    "storage_bucket": "groceries-store-20580.appspot.com"
+    "project_number": "917362878094",
+    "project_id": "online-groceries-store-d27d4",
+    "storage_bucket": "online-groceries-store-d27d4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:644403723677:android:84b0044cd84f1af84a0374",
+        "mobilesdk_app_id": "1:917362878094:android:270109eef91dd960b58bdf",
         "android_client_info": {
           "package_name": "com.example.groceries_store"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "917362878094-t95mtu1gbfdrvf7sqrbh5lpcf5cr5h9l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.groceries_store",
+            "certificate_hash": "292c539e7d4b6bdc92600e56e6358c987c20f8dd"
+          }
+        },
+        {
+          "client_id": "917362878094-17ekompd3ko2l90amshrvtqmihkulfrb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBDJ94_OykOQS3ttv5SAP2EVlEzfMu7eno"
+          "current_key": "AIzaSyAB_XXNzs4l7jfc1h51rUMGRrtIgah_gXo"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:644403723677:android:87355fc1f3800b614a0374",
-        "android_client_info": {
-          "package_name": "com.example.online_groceries_store"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBDJ94_OykOQS3ttv5SAP2EVlEzfMu7eno"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917362878094-17ekompd3ko2l90amshrvtqmihkulfrb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
