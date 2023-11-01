@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:online_groceries_store/core/constats.dart';
 import 'package:online_groceries_store/core/utils/size_config.dart';
 import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
+import 'package:online_groceries_store/core/widgets/custom_pages_route.dart';
 // import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
 import 'package:online_groceries_store/core/widgets/space_wiget.dart';
 import 'package:online_groceries_store/features/sign_in/presentation/sign_in_view.dart';
@@ -73,12 +74,11 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                   CustomElevetedButton(
                     onPressed: () {
                       Future.delayed(
-                      const Duration(milliseconds: 300),
+                      const Duration(milliseconds: 600),
                       () {
-                        Navigator.pushReplacement(
-                          context, 
-                          MaterialPageRoute(builder: (context) => const SignInView()
-                          ));
+                        Navigator.of(context).push(
+                            CustomFadePageRoute(page: const SignInView())
+                          );
                       });
                     },
                     text: 'Get Started',

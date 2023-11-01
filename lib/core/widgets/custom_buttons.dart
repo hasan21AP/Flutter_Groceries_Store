@@ -28,7 +28,6 @@ class CustomGeneralButton extends StatelessWidget {
                             style: const TextStyle(
                               color: Color(0xFFFFF9FF),
                               fontSize: 18,
-                              fontFamily: 'Gilroy',
                               fontWeight: FontWeight.w600,
                               height: 0.06,
                             ),
@@ -61,7 +60,6 @@ class CustomElevetedButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     textStyle: const TextStyle(
-                      fontFamily: 'Gilroy',
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     )
@@ -99,7 +97,6 @@ class CustomSignInButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
             textStyle: const TextStyle(
-              fontFamily: 'Gilroy',
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
@@ -131,11 +128,12 @@ class CustomSignInButton extends StatelessWidget {
 
 
 class GeneralCustomTextButtons extends StatelessWidget {
-  const GeneralCustomTextButtons({super.key, this.text, this.color, this.onPressed});
+  const GeneralCustomTextButtons({super.key, this.text, this.color, this.onPressed, this.heightOfText});
 
   final String? text;
   final Color? color;
   final VoidCallback? onPressed;
+  final double? heightOfText;
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +149,7 @@ class GeneralCustomTextButtons extends StatelessWidget {
                         fontSize: 14,
                         fontFamily: 'Gilroy-Medium',
                         fontWeight: FontWeight.w400,
-                        height: 0.08,
+                        height: heightOfText,
                         letterSpacing: 0.70,
                       ),
                     ),

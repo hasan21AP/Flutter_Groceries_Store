@@ -22,10 +22,12 @@ class AuthProvider with ChangeNotifier {
     _auth?.authStateChanges().listen((User? user) {
       if (user == null){
         _authStatus = AuthStatus.unAuthenticated;
+        print('================User is Sign In');
       }
       else {
         _user = user;
         _authStatus = AuthStatus.Authenticated;
+        print('================User is Sign Out');
       }
       notifyListeners();
     });
@@ -102,15 +104,15 @@ class AuthProvider with ChangeNotifier {
   notifyListeners();
   }
 
-  void checking () {
-    print('Google User Email is: ${_googleUser?.email}');
-    // print('User UID is: ${user?.uid}');
-    print('Current User is: ${user?.email}');
-    // print('User ID Token ${googleSignIn.currentUser?.id}');
-    // print('User of google is: ${_userOfGoogle?.email}');
-    print('auth Status: $_authStatus');
+  // void checking () {
+  //   print('Google User Email is: ${_googleUser?.email}');
+  //   print('User UID is: ${user?.uid}');
+  //   print('Current User is: ${user?.email}');
+  //   print('User ID Token ${googleSignIn.currentUser?.id}');
+  //   print('User of google is: ${_userOfGoogle?.email}');
+  //   print('auth Status: $_authStatus');
 
-  }
+  // }
   
 
 }

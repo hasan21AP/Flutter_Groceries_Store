@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:online_groceries_store/core/constats.dart';
 import 'package:online_groceries_store/core/utils/size_config.dart';
 import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
+import 'package:online_groceries_store/core/widgets/custom_pages_route.dart';
 import 'package:online_groceries_store/core/widgets/space_wiget.dart';
 import 'package:online_groceries_store/features/auth/auth_provider/auth_prov.dart';
 import 'package:online_groceries_store/features/auth/pages/presentation/login_view.dart';
@@ -68,8 +69,10 @@ class _SignInBodyState extends State<SignInBody> {
             CustomSignInButton(
                   onPressed: () {
                    Future.delayed( const Duration(milliseconds: 300),
-                   (){Navigator.push(context, 
-                   MaterialPageRoute(builder: (context) => const LogInView()));
+                   (){
+                    Navigator.of(context).push(
+                      CustomSlidePageRoute(page: const LogInView()
+                      ));
                   });
             },
             mainColor: const Color.fromARGB(121, 4, 4, 4),
@@ -109,11 +112,22 @@ class _SignInBodyState extends State<SignInBody> {
           const VerticalSpace(value: 3),
           CustomSignInButton(
             onPressed: () async{
+
+                    showDialog(context: context, 
+                    builder: (context){
+                      return const Center(
+                        child: CircularProgressIndicator(color: kMainColor,)
+                      );
+                    }
+                    );
                     await prov.signInWithGoogle();
                       Future.delayed( const Duration(milliseconds: 300),
-                   (){Navigator.pushReplacement(context, 
-                   MaterialPageRoute(builder: (context) => const HomeScreenView()));
+                   (){
+                      Navigator.of(context).push(
+                        CustomSlidePageRoute(page: const HomeScreenView()
+                        ));
                   });
+
             },
             mainColor: const Color(0xFF5383EC),
             secondColor: kSecondColor,

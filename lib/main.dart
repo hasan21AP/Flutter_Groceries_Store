@@ -31,11 +31,10 @@ class OnlineGroceriesStore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final prov = Provider.of<AuthProvider>(context);
-    // prov.checking();
     return  MaterialApp(
       title: 'Groceries Store',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Gilroy'),
       home: _showScreen(context),
     );
   }
@@ -45,10 +44,8 @@ class OnlineGroceriesStore extends StatelessWidget {
   switch (prov.authStatus) {
     case AuthStatus.Authenticating:
     case AuthStatus.Authenticated:
-      prov.checking();
       return const HomeScreenView();
     case AuthStatus.unAuthenticated:
-      prov.checking();
       return const SplashViewBody();
       
     default:
