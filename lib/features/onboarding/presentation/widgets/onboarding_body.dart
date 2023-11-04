@@ -73,13 +73,11 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                   const VerticalSpace(value: 4),
                   CustomElevetedButton(
                     onPressed: () {
-                      Future.delayed(
-                      const Duration(milliseconds: 600),
-                      () {
-                        Navigator.of(context).push(
+                      Future.microtask(
+                      () => Navigator.of(context).pushReplacement(
                             CustomFadePageRoute(page: const SignInView())
-                          );
-                      });
+                          )
+                      );
                     },
                     text: 'Get Started',
                     mainColor: kMainColor,

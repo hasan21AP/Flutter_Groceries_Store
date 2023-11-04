@@ -121,12 +121,14 @@ class _SignInBodyState extends State<SignInBody> {
                     }
                     );
                     await prov.signInWithGoogle();
-                      Future.delayed( const Duration(milliseconds: 300),
-                   (){
+                      if (prov.user == null){
+                        return;
+                      }
+                      Future.microtask( () =>
                       Navigator.of(context).push(
                         CustomSlidePageRoute(page: const HomeScreenView()
-                        ));
-                  });
+                        ))
+                  );
 
             },
             mainColor: const Color(0xFF5383EC),
@@ -139,8 +141,24 @@ class _SignInBodyState extends State<SignInBody> {
           ),
           const VerticalSpace(value: 2),
           CustomSignInButton(
-            onPressed: () {
-                  
+            onPressed: () async{
+                  showDialog(context: context, 
+                    builder: (context){
+                      return const Center(
+                        child: CircularProgressIndicator(color: kMainColor,)
+                      );
+                    }
+                    );
+                    await prov.signInWithFacebook();
+                    if (prov.user == null){
+                      return;
+                    }
+                    Future.microtask( () =>
+                      Navigator.of(context).push(
+                        CustomSlidePageRoute(page: const HomeScreenView()
+                        ))
+                  );
+
             },
             mainColor: const Color(0xFF4A66AC),
             secondColor: kSecondColor,

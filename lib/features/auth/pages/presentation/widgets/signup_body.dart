@@ -5,6 +5,9 @@ import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
 import 'package:online_groceries_store/core/widgets/custom_pages_route.dart';
 import 'package:online_groceries_store/core/widgets/custom_text_forms.dart';
 import 'package:online_groceries_store/core/widgets/space_wiget.dart';
+import 'package:online_groceries_store/features/auth/auth_provider/auth_prov.dart';
+import 'package:online_groceries_store/features/home/presentation/home_screen_view.dart';
+import 'package:provider/provider.dart';
 
 import '../login_view.dart';
 
@@ -25,6 +28,16 @@ class _SignUpBodyState extends State<SignUpBody> {
   final GlobalKey<FormState> formState3 = GlobalKey<FormState>();
   bool _passwordVisible = true;
 
+  final email = TextEditingController();
+  final password = TextEditingController();
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +47,7 @@ class _SignUpBodyState extends State<SignUpBody> {
 
   @override
   Widget build(BuildContext context) {
+    final prov = Provider.of<AuthProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -87,6 +101,7 @@ class _SignUpBodyState extends State<SignUpBody> {
               ),
             const VerticalSpace(value: 3),
             CustomTextFieldFormForEmail(
+              myController: email,
               formKey: formState2,
               borderColor: kMainColor,
               focusColor: kMainColor,
@@ -101,6 +116,7 @@ class _SignUpBodyState extends State<SignUpBody> {
               ),
             const VerticalSpace(value: 3),
             CustomTextFieldFormForPassword(
+              myController: password,
               formKey: formState3,
               borderColor: kMainColor,
               focusColor: kMainColor,
@@ -143,8 +159,14 @@ class _SignUpBodyState extends State<SignUpBody> {
               Container(
                 alignment: Alignment.center,
                 child: CustomElevetedButton(
-                  onPressed: (){
-                    if (formState1.currentState!.validate() || formState2.currentState!.validate() || formState3.currentState!.validate()){
+                  onPressed: () async{
+                    if (formState1.currentState!.validate() || 
+                    formState2.currentState!.validate() ||
+                     formState3.currentState!.validate()) {
+                      await prov.signUpWithEmailAndPassword(email.text, password.text);
+                        Future.microtask(() => Navigator.of(context).pushReplacement(
+                          CustomSlidePageRoute(page: const HomeScreenView())
+                        ));
                       
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -174,12 +196,11 @@ class _SignUpBodyState extends State<SignUpBody> {
                   // HorizanintalSpace(value: 1),
                   GeneralCustomTextButtons(
                     onPressed: (){
-                      Future.delayed(
-                        const Duration(milliseconds: 100), (){
-                        Navigator.of(context).push(
+                      Future.microtask(
+                        () => Navigator.of(context).push(
                           CustomSlidePageRoute(page: const LogInView()
-                          ));
-                      });
+                          ))
+                      );
                     },
                     text: 'Login',
                     color: kMainColor,

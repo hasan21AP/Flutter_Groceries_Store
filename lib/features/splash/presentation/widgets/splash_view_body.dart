@@ -22,7 +22,7 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return AnimatedSplashScreen(
-      splash: Image.asset(klogo), 
+      splash: Image.asset(kSplash), 
       nextScreen: const OnBoardingView(),
       duration: 3000,
       backgroundColor: kMainColor,

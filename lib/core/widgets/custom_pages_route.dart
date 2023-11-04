@@ -7,7 +7,7 @@ class CustomSlidePageRoute extends PageRouteBuilder {
   CustomSlidePageRoute({
     required this.page,
   }) : super(
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 300),
         pageBuilder: (context, animation, secondaryAnimation) => page,
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           var begin = const Offset(1, 0);
@@ -28,7 +28,7 @@ class CustomFadePageRoute extends PageRouteBuilder {
   CustomFadePageRoute({
     required this.page,
   }) : super(
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 600),
         pageBuilder: (context, animation, secondaryAnimation) => page,
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(opacity: animation, child: child);

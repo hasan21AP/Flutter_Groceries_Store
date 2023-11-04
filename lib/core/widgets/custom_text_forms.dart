@@ -4,7 +4,7 @@ import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
 class CustomTextFieldFormForEmail extends StatelessWidget {
     const CustomTextFieldFormForEmail(
     {super.key, this.text, required this.borderColor, this.focusColor, 
-    this.icon, this.obscureText, this.onPressed, this.validator, this.formKey}
+    this.icon, this.obscureText, this.onPressed, this.validator, this.formKey, this.myController}
     );
 
   final String? text;
@@ -15,6 +15,7 @@ class CustomTextFieldFormForEmail extends StatelessWidget {
   final VoidCallback? onPressed;
   final String? Function(String?)? validator;
   final Key? formKey;
+  final TextEditingController? myController;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class CustomTextFieldFormForEmail extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
         child: TextFormField(
+          controller: myController,
           keyboardType: TextInputType.emailAddress,
           autocorrect: true,
           validator: validator,
@@ -54,7 +56,7 @@ class CustomTextFieldFormForEmail extends StatelessWidget {
 class CustomTextFieldFormForPassword extends StatelessWidget {
   const CustomTextFieldFormForPassword(
     {super.key, this.text, required this.borderColor, this.focusColor, 
-    this.icon, this.obscureText, this.onPressed, this.validator, this.formKey}
+    this.icon, this.obscureText, this.onPressed, this.validator, this.formKey, this.myController}
     );
 
   final String? text;
@@ -65,6 +67,7 @@ class CustomTextFieldFormForPassword extends StatelessWidget {
   final VoidCallback? onPressed;
   final String? Function(String?)? validator;
   final Key? formKey;
+  final TextEditingController? myController;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +76,7 @@ class CustomTextFieldFormForPassword extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
         child: TextFormField(
+          controller: myController,
           keyboardType: TextInputType.visiblePassword,
           obscureText: obscureText!,
           autocorrect: false,

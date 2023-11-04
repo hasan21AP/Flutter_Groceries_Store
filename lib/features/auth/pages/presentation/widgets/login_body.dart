@@ -5,7 +5,10 @@ import 'package:online_groceries_store/core/widgets/custom_buttons.dart';
 import 'package:online_groceries_store/core/widgets/custom_pages_route.dart';
 import 'package:online_groceries_store/core/widgets/custom_text_forms.dart';
 import 'package:online_groceries_store/core/widgets/space_wiget.dart';
+import 'package:online_groceries_store/features/auth/auth_provider/auth_prov.dart';
 import 'package:online_groceries_store/features/auth/pages/presentation/signup_view.dart';
+import 'package:online_groceries_store/features/home/presentation/home_screen_view.dart';
+import 'package:provider/provider.dart';
 
 class LogInBody extends StatefulWidget {
   const LogInBody({super.key});
@@ -20,6 +23,15 @@ class _LogInBodyState extends State<LogInBody> {
   final GlobalKey<FormState> formState1 = GlobalKey<FormState>();
   final GlobalKey<FormState> formState2 = GlobalKey<FormState>();
   bool _passwordVisible = true;
+  final email = TextEditingController();
+  final password = TextEditingController();
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -30,6 +42,7 @@ class _LogInBodyState extends State<LogInBody> {
 
   @override
   Widget build(BuildContext context) {
+    final prov = Provider.of<AuthProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -69,6 +82,7 @@ class _LogInBodyState extends State<LogInBody> {
 
             const VerticalSpace(value: 7),
             CustomTextFieldFormForEmail(
+              myController: email,
               formKey: formState1,
               borderColor: kMainColor,
               focusColor: kMainColor,
@@ -81,6 +95,7 @@ class _LogInBodyState extends State<LogInBody> {
               ),
             const VerticalSpace(value: 3),
             CustomTextFieldFormForPassword(
+              myController: password,
               formKey: formState2,
               borderColor: kMainColor,
               focusColor: kMainColor,
@@ -115,9 +130,11 @@ class _LogInBodyState extends State<LogInBody> {
               Container(
                 alignment: Alignment.center,
                 child: CustomElevetedButton(
-                  onPressed: (){
+                  onPressed: () async{
                     if (formState1.currentState!.validate() || formState2.currentState!.validate()){
-                      
+                        await prov.loginWithEmailAndPassword(email.text, password.text);
+                        Future.microtask(() => Navigator.of(context).pushReplacement(CustomSlidePageRoute(page: const HomeScreenView())
+                        ));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Something Wrong'))
@@ -146,12 +163,11 @@ class _LogInBodyState extends State<LogInBody> {
                   // HorizanintalSpace(value: 1),
                   GeneralCustomTextButtons(
                     onPressed: (){
-                      Future.delayed(
-                        const Duration(milliseconds: 100), (){
-                        Navigator.of(context).push(
+                      Future.microtask(
+                         () => Navigator.of(context).push(
                           CustomSlidePageRoute(page: const SignUpView()
-                          ));
-                      });
+                          ))
+                      );
                     },
                     text: 'Signup',
                     color: kMainColor,
