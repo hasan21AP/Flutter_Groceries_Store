@@ -121,9 +121,6 @@ class _SignInBodyState extends State<SignInBody> {
                     }
                     );
                     await prov.signInWithGoogle();
-                      if (prov.user == null){
-                        return;
-                      }
                       Future.microtask( () =>
                       Navigator.of(context).push(
                         CustomSlidePageRoute(page: const HomeScreenView()
@@ -150,9 +147,6 @@ class _SignInBodyState extends State<SignInBody> {
                     }
                     );
                     await prov.signInWithFacebook();
-                    if (prov.user == null){
-                      return;
-                    }
                     Future.microtask( () =>
                       Navigator.of(context).push(
                         CustomSlidePageRoute(page: const HomeScreenView()

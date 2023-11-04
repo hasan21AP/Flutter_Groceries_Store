@@ -57,16 +57,19 @@ dev_dependencies:
     sdk: flutter
   
 flutter_native_splash:
-  color: "#53B175"
+  color: "#FFF9FF"
   image: assets/splash.png
-  color_dark: "#53B175"
-  image_dark: assets/splash.png
+  color_dark: "#0c140a"
+  image_dark: assets/splash_logo.png
 
   android_12:
-    image: assets/splash.png
-    icon_background_color: "#53B175"
-    image_dark: assets/splash.png
-    icon_background_color_dark: "#53B175"
+    image: assets/splash_logo.png
+    icon_background_color: "#FFF9FF"
+    image_dark: assets/splash_logo.png
+    icon_background_color_dark: "#0c140a"
+    android: true
+    ios: true
+    web: false
 
 
   # Splash screen background color:

@@ -7,7 +7,6 @@ import 'package:online_groceries_store/firebase_options.dart';
 import 'package:provider/provider.dart';
 
 import 'features/home/presentation/home_screen_view.dart';
-import 'features/sign_in/presentation/sign_in_view.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async{
@@ -42,7 +41,7 @@ class OnlineGroceriesStore extends StatelessWidget {
       title: 'Nectar',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Gilroy'),
-      home: prov.user == null ? const SignInView() : const HomeScreenView(),
+      home: prov.user == null ? const SplashViewBody() : const HomeScreenView(),
     );
   }
 

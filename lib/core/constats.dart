@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const kMainColor = Color(0xFF53B175);
 const kSecondColor = Color(0xFFFFF9FF);
+const kDartMode = Color(0xFF000000);
 const kSplash = 'assets/images/splash.png';
 const kOnboarding = 'assets/images/onboarding.png';
 const kOnboarding_2 = 'assets/images/onboarding2.png';

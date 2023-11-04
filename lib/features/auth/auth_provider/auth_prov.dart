@@ -19,7 +19,7 @@ class AuthProvider with ChangeNotifier {
     _auth = FirebaseAuth.instance;
     _auth?.authStateChanges().listen((User? user) {
       if (user == null){
-        _user = user;
+        // _user = user;
         // print('================User is Sign In');
       }
       else {
@@ -34,14 +34,14 @@ class AuthProvider with ChangeNotifier {
   GoogleSignInAccount? get googelUser => _googleUser;
   
 
-  Future<User?> signUpWithEmailAndPassword(String email, String password) async{
+  Future signUpWithEmailAndPassword(String email, String password) async{
     try {
         // ignore: unused_local_variable
         final credential = await _auth?.createUserWithEmailAndPassword(
         email: email,
         password: password);
-      notifyListeners();
-      return credential?.user;
+        notifyListeners();
+        credential?.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email'){
           errorMassage = 'The Email is Invalid';
@@ -56,18 +56,17 @@ class AuthProvider with ChangeNotifier {
       }
       
       notifyListeners();
-      return null;
     }
   }
 
-  Future<User?> loginWithEmailAndPassword(String email, String password) async{
+  Future<void> loginWithEmailAndPassword(String email, String password) async{
     try {
         // ignore: unused_local_variable
         final credential = await _auth?.signInWithEmailAndPassword(
         email: email,
         password: password);
-      notifyListeners();
-      return credential?.user;
+        notifyListeners();
+        credential?.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email'){
           errorMassage = 'The Email is Invalid';
@@ -80,7 +79,6 @@ class AuthProvider with ChangeNotifier {
       }
       
       notifyListeners();
-      return null;
     }
   }
 
