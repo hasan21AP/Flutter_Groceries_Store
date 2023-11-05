@@ -37,6 +37,7 @@ class OnlineGroceriesStore extends StatelessWidget {
     final prov = Provider.of<AuthProvider>(context);
     print('User: ${prov.user?.email}');
     print('User Provider: ${prov.user?.providerData.elementAt(0).providerId}');
+    print('Google User: ${prov.googelUser}');
     return  MaterialApp(
       title: 'Nectar',
       debugShowCheckedModeBanner: false,

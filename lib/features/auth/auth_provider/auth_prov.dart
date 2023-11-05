@@ -11,20 +11,20 @@ class AuthProvider with ChangeNotifier {
   FirebaseAuth? _auth;
   User? _user;
   String? errorMassage;
-  final GoogleSignIn googleSignIn = GoogleSignIn();
+  GoogleSignIn? _googleSignIn;
   GoogleSignInAccount? _googleUser;
 
 
   AuthProvider() {
     _auth = FirebaseAuth.instance;
+    _googleSignIn = GoogleSignIn();
     _auth?.authStateChanges().listen((User? user) {
       if (user == null){
-        // _user = user;
-        // print('================User is Sign In');
+        print('================User is Sign Out');
       }
       else {
         _user = user;
-        // print('================User is Sign Out');
+        print('================User is Sign In');
       }
       notifyListeners();
     });
@@ -84,22 +84,22 @@ class AuthProvider with ChangeNotifier {
 
   logout() async {
     await _auth?.signOut();
-    await googleSignIn.signOut();
     notifyListeners();
   }
 
   Future signInWithGoogle() async{
 
     try {
-        final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+        final GoogleSignInAccount? googleUser = await _googleSignIn?.signIn();
         if (googleUser == null){
-          return;
+          return null;
         }
         _googleUser = googleUser;
         final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
         
         final credential = GoogleAuthProvider.credential(
-          idToken: googleAuth.idToken,accessToken: googleAuth.accessToken
+          idToken: googleAuth.idToken,
+          accessToken: googleAuth.accessToken
         );
         
         await _auth?.signInWithCredential(credential);
@@ -114,8 +114,8 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> signOutwithGoogle() async{
     try {
-  await googleSignIn.disconnect();
   await _auth?.signOut();
+  await _googleSignIn?.disconnect();
 
 } on Exception {
   // print('The error is: ${e.toString()}');
